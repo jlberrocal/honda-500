@@ -1,0 +1,121 @@
+<h2 mat-dialog-title>Add Purchase</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="flex-form">
+    <mat-form-field>
+      <mat-label>Member</mat-label>
+      <input
+        formControlName="member"
+        matInput
+        (input)="filter($event, 'members')"
+        placeholder="Member"
+        placeholder="search by name or phone"
+        [matAutocomplete]="memberAuto"
+      />
+      <mat-autocomplete
+        requireSelection
+        #memberAuto="matAutocomplete"
+        [displayWith]="displayFn"
+      >
+        @for(option of memberOptions$ | async; track option) {
+        <mat-option [value]="option">{{ option.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Product</mat-label>
+      <input
+        formControlName="product"
+        matInput
+        (input)="filter($event, 'products')"
+        placeholder="search by name"
+        [matAutocomplete]="productsAuto"
+      />
+      <mat-autocomplete
+        requireSelection
+        #productsAuto="matAutocomplete"
+        [displayWith]="displayFn"
+      >
+        @for(option of productOptions$ | async; track option) {
+        <mat-option [value]="option">{{ option.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Quantity</mat-label>
+      <input
+        formControlName="quantity"
+        type="number"
+        matInput
+        placeholder="Quantity"
+      />
+    </mat-form-field>
+    <div>
+      <mat-label>Requires Shipping?</mat-label>
+      <mat-radio-group class="shipping-radio" formControlName="shippingMethod">
+        <mat-radio-button value="pickup">Pickup at shop later</mat-radio-button>
+        <mat-radio-button value="someone"
+          >Some one will take it</mat-radio-button
+        >
+        <mat-radio-button value="shipping">Use Shipping</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    @switch (form.value.shippingMethod) { @case ('someone') {
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        formControlName="someoneName"
+        type="text"
+        matInput
+        placeholder="Give me his name"
+      />
+    </mat-form-field>
+    } @case ('shipping') {
+    <form formGroupName="shippingDetails">
+      <mat-form-field>
+        <mat-label>Province</mat-label>
+        <mat-select formControlName="province">
+          @for (province of provinceOptions(); track province.id) {
+          <mat-option [value]="province.id">{{ province.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Canton</mat-label>
+        <mat-select formControlName="canton">
+          @for (canton of cantonOptions(); track canton.id) {
+          <mat-option [value]="canton.id">{{ canton.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>District</mat-label>
+        <mat-select formControlName="zipCode">
+          @for (district of districtOptions(); track district.id) {
+          <mat-option [value]="district.id">{{ district.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Signals</mat-label>
+        <input
+          formControlName="signals"
+          type="text"
+          matInput
+          placeholder="delivery signals"
+        />
+      </mat-form-field>
+    </form>
+    } }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="null">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="form.value"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

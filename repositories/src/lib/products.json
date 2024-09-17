@@ -1,0 +1,136 @@
+{
+  "products": [
+    {
+      "name": "BelRay Thumper 10w40 LT",
+      "normalPrice": 8982.9,
+      "discountPercentage": "20",
+      "totalPrice": 8120.54
+    },
+    {
+      "name": "BelRay Thumper 10w40 4LTS",
+      "normalPrice": 33835.59,
+      "discountPercentage": "20",
+      "totalPrice": 30587.37
+    },
+    {
+      "name": "BelRay EXP 10w40 LT",
+      "normalPrice": 9599.37,
+      "discountPercentage": "20",
+      "totalPrice": 8677.83
+    },
+    {
+      "name": "BelRay EXP 10w40 4LTS",
+      "normalPrice": 35670.0,
+      "discountPercentage": "20",
+      "totalPrice": 32245.68
+    },
+    {
+      "name": "BelRay EXS 10w40 LT",
+      "normalPrice": 14064.0,
+      "discountPercentage": "20",
+      "totalPrice": 12713.86
+    },
+    {
+      "name": "BelRay EXS 10w40 4LTS",
+      "normalPrice": 54885.8,
+      "discountPercentage": "20",
+      "totalPrice": 49616.76
+    },
+    {
+      "name": "BelRay BlueTac",
+      "normalPrice": 10080.0,
+      "discountPercentage": "20",
+      "totalPrice": 9112.32
+    },
+    {
+      "name": "BelRay SuperClean",
+      "normalPrice": 10290.0,
+      "discountPercentage": "20",
+      "totalPrice": 9302.16
+    },
+    {
+      "name": "BelRay Limpia Filtros",
+      "normalPrice": 7820.4,
+      "discountPercentage": "20",
+      "totalPrice": 7069.64
+    },
+    {
+      "name": "BelRay Suspension 10w",
+      "normalPrice": 10744.8,
+      "discountPercentage": "20",
+      "totalPrice": 9713.3
+    },
+    {
+      "name": "BelRay 6 in 1",
+      "normalPrice": 8497.0,
+      "discountPercentage": "20",
+      "totalPrice": 7681.29
+    },
+    {
+      "name": "BelRay Liquido Frenos Dot4",
+      "normalPrice": 7791.0,
+      "discountPercentage": "20",
+      "totalPrice": 7043.06
+    },
+    {
+      "name": "BelRay EXS 10w50 LT",
+      "normalPrice": 14064.0,
+      "discountPercentage": "20",
+      "totalPrice": 12713.86
+    },
+    {
+      "name": "BelRay EXS 10w50 4LTS",
+      "normalPrice": 54885.8,
+      "discountPercentage": "20",
+      "totalPrice": 49616.76
+    },
+    {
+      "name": "BelRay Grasa impermeable tubo",
+      "normalPrice": 9860.0,
+      "discountPercentage": "20",
+      "totalPrice": 8913.44
+    },
+    {
+      "name": "Royal Purple Limpiador de inyección",
+      "normalPrice": 4320.0,
+      "discountPercentage": "20",
+      "totalPrice": 3905.28
+    },
+    {
+      "name": "Royal Purple Max CyCle 10w40",
+      "normalPrice": 12960.0,
+      "discountPercentage": "20",
+      "totalPrice": 11715.84
+    },
+    {
+      "name": "Fibra EBC delantera",
+      "normalPrice": 26761.07,
+      "discountPercentage": "10",
+      "totalPrice": 27216.01
+    },
+    {
+      "name": "Fibra EBC trasera",
+      "normalPrice": 26761.07,
+      "discountPercentage": "10",
+      "totalPrice": 27216.01
+    },
+    {
+      "name": "Filtro Aceite K&N",
+      "normalPrice": 11693.1,
+      "discountPercentage": "10",
+      "totalPrice": 11891.88
+    },
+    {
+      "name": "Filtro Aceite HiFlo 204",
+      "normalPrice": 7330.58,
+      "discountPercentage": "10",
+      "totalPrice": 7455.2
+    },
+    {
+      "name": "Filtro Aceite HiFlo 204RC",
+      "normalPrice": 8760.93,
+      "discountPercentage": "10",
+      "totalPrice": 8909.86
+    }
+  ]
+}

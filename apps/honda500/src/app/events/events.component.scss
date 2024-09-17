@@ -1,0 +1,17 @@
+.invites-cell {
+  display: flex;
+  flex-direction: row;
+}
+
+mat-form-field {
+  width: calc(25vw - 50px);
+}
+
+:host {
+  min-width: calc(100vw - 50px);
+}
+
+.action-button {
+  min-width: 26px !important;
+  padding: 0 5px 0 20px !important;
+}

@@ -1,0 +1,45 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="name" />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    @for (column of columns(); track column) {
+    <ng-container [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+      @if (column === 'invites') {
+      <td mat-cell *matCellDef="let row">
+        <div class="invites-cell">
+          <button mat-button>
+            <mat-icon svgIcon="whatsapp"></mat-icon>
+          </button>
+          @if (row['province'] === 'Guanacaste') {
+          <button mat-button>
+            <mat-icon svgIcon="guanacaste"></mat-icon>
+          </button>
+          }
+        </div>
+      </td>
+      } @else if (column.toLocaleLowerCase().includes('date')) {
+      <td mat-cell *matCellDef="let row">
+        {{ row[column] | date : 'dd/MM/YYYY' }}
+      </td>
+      } @else {
+      <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
+      }
+    </ng-container>
+    }
+    <tr mat-header-row *matHeaderRowDef="columns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns()"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data</td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 25, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>

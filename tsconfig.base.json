@@ -5,6 +5,8 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -14,7 +16,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@honda500/data-access": ["data-access/src/index.ts"],
+      "@honda500/dtos": ["dtos/src/index.ts"],
+      "@honda500/repositories": ["repositories/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

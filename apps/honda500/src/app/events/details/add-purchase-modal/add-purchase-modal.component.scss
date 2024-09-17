@@ -1,0 +1,16 @@
+.flex-form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-dialog-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.shipping-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
