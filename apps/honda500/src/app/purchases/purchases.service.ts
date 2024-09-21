@@ -1,10 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import {
-  AddPurchase,
+  AddPurchaseDTO,
   Member,
   Product,
   Province,
   Purchase,
+  PurchaseDetail,
+  SearchResult
 } from '@honda500/dtos';
 import { Observable } from 'rxjs';
 import { MembersService } from '../members/members.service';
@@ -22,15 +24,19 @@ export class PurchaseService extends IService<Purchase> {
     throw new Error('Method not implemented.');
   }
 
-  save(purchase: AddPurchase) {
-    return this.http.post('/api/purchases', purchase);
+  save(purchase: AddPurchaseDTO): Observable<Purchase> {
+    return this.http.post<Purchase>('/api/purchases', purchase);
+  }
+
+  update(id: number, purchase: AddPurchaseDTO): Observable<PurchaseDetail> {
+    return this.http.put<PurchaseDetail>(`/api/purchases/${id}`, purchase);
   }
 
   getDataForEvent(eventId: number): Observable<[Purchase[], number]> {
     return this.http.get<[Purchase[], number]>(`/api/purchases/${eventId}`);
   }
 
-  getMembersForPurchase(needle: string): Observable<Member[]> {
+  getMembersForPurchase(needle: string): Observable<SearchResult[]> {
     return this.members.search(needle);
   }
 

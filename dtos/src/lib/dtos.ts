@@ -1,6 +1,6 @@
 export interface Member {
-  id: string;
-  nationalId: string;
+  id?: string;
+  nationalId?: string;
   name: string;
   email: string;
   phone: string;
@@ -14,33 +14,51 @@ export interface Member {
 
 export interface Purchase {
   id: number;
+  member: Member;
+  details: PurchaseDetail[];
+}
+
+export interface ShippingAddress {
+  province: number;
+  canton: number;
+  zipCode: number;
+  signals: string;
+}
+
+export type ShippingType = 'pickup' | 'someone' | 'shipping'
+
+export interface PurchaseDetail {
+  id: number;
   product: Product;
   member: Member;
   event: EventDTO;
   quantity: number;
-  shippingMethod: 'pickup' | 'someone' | 'shipping';
-  someoneName?: string;
-  shippingDetails?: {
-    province: number;
-    canton: number;
-    zipCode: number;
-    signals: string;
-  }
+  shippingMethod: ShippingType;
+  someoneName?: string | null;
+  shippingDetails?: ShippingAddress | null;
 }
 
 export interface AddPurchase {
-  memberId: string;
-  productId: number;
+  member: Pick<Member, 'id' | 'name' | 'phone'>;
+  products: ProductDetails[];
   eventId: number;
+  shippingMethod: ShippingType;
+  someoneName?: string;
+  shippingDetails?: ShippingAddress;
+}
+
+export interface AddPurchaseDTO {
+  member: Pick<Member, 'id' | 'name' | 'phone'>;
+  eventId: number;
+  products: { productId: number; quantity: number }[];
+  shippingMethod: string;
+  someoneName?: string;
+  shippingDetails?: ShippingAddress;
+}
+
+export interface ProductDetails {
+  product: IdName;
   quantity: number;
-  shippingMethod: 'pickup' | 'someone' | 'shipping';
-  someoneName?: string | null;
-  shippingDetails?: {
-    province: number;
-    canton: number;
-    zipCode: number;
-    signals: string;
-  } | null
 }
 
 export interface Product {
@@ -55,7 +73,7 @@ export interface EventDTO {
   id?: number;
   name: string;
   date: Date;
-  members: Member[];
+  purchases: Purchase[];
 }
 
 export class EditEventDTO {
@@ -68,7 +86,7 @@ export interface SearchResult {
   name: string;
 }
 
-interface IdName {
+export interface IdName {
   id: number;
   name: string;
 }

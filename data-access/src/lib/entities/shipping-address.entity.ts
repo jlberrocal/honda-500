@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { PurchaseDetail } from './purchase-detail.entity';
 
 @Entity('shipping-addresses')
 export class ShippingAddress {
@@ -6,11 +7,14 @@ export class ShippingAddress {
   id?: number;
 
   @Column()
-  name!: string;
-
-  @Column()
-  zipCode!: string;
+  zipCode!: number;
 
   @Column()
   signals!: string;
+
+  @OneToOne(() => PurchaseDetail, (pd) => pd.shippingAddress, {
+    nullable: true,
+  })
+  @JoinColumn()
+  detail?: PurchaseDetail;
 }

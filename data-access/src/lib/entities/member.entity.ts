@@ -1,11 +1,9 @@
 import {
   Column,
   Entity,
-  ManyToMany,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn
 } from 'typeorm';
-import { EventEntity } from './event.entity';
 import { Purchase } from './purchase.entity';
 
 @Entity('members')
@@ -39,9 +37,6 @@ export class Member {
 
   @Column()
   province!: string;
-
-  @ManyToMany(() => EventEntity, (e) => e.members)
-  events?: EventEntity[];
 
   @OneToMany(() => Purchase, (p) => p.member)
   purchases?: Purchase[];

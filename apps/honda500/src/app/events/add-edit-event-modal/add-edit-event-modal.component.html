@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Edit Event</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="flex-form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Start DateTime</mat-label>
+      <input
+        [matDatepicker]="picker"
+        [min]="minDate"
+        matInput
+        formControlName="date"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Time</mat-label>
+      <input formControlName="time" mask="Hh:m0:s0" matInput placeholder="00:00:00" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="null">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="value()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EditEventDTO, EventDTO } from '@honda500/dtos';
 import { exhaustMap, filter, first, map } from 'rxjs';
 import { TableComponent } from '../shared/table.component';
-import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { AddEditEventModalComponent } from './add-edit-event-modal/add-edit-event-modal.component';
 import { EventsService } from './events.service';
 
 @Component({
@@ -37,16 +37,16 @@ export class EventsComponent extends TableComponent<EventDTO, EventsService> {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  readonly baseColumns: Array<keyof EventDTO> = ['name', 'date', 'members'];
+  readonly baseColumns: Array<keyof EventDTO> = ['name', 'date', 'purchases'];
   override extendedColumns = ['actions'];
 
-  openEditModal(row: EventDTO, event: MouseEvent) {
+  openModal(row: EventDTO | null, event: MouseEvent) {
     event.stopPropagation();
     const ref = this.dialog.open<
-      EditModalComponent,
+      AddEditEventModalComponent,
       EventDTO,
-      EditEventDTO | null
-    >(EditModalComponent, {
+      EditEventDTO | EventDTO | null
+    >(AddEditEventModalComponent, {
       data: row,
       minHeight: '200px',
       minWidth: '600px',
@@ -57,19 +57,26 @@ export class EventsComponent extends TableComponent<EventDTO, EventsService> {
       .pipe(
         first(),
         filter((resp) => resp !== null && resp !== undefined),
-        exhaustMap((editted: EditEventDTO) =>
-          this.service.editEvent(row.id!, editted).pipe(
-            first(),
-            map((resp) => (resp.affected === 1 ? editted : null))
-          )
+        exhaustMap((dto: EditEventDTO) =>
+          row
+            ? this.service.editEvent(row.id!, dto).pipe(
+                first(),
+                map((resp) =>
+                  resp.affected === 1 ? (dto as EditEventDTO) : null
+                )
+              )
+            : this.service.addEvent(dto).pipe(first())
         )
       )
-      .subscribe((editted) => {
-        if (editted) {
+      .subscribe((dto: EventDTO | EditEventDTO | null) => {
+        console.log(dto, row);
+        if (!row && dto) {
+          this.dataSource.data = [...this.dataSource.data, dto as EventDTO];
+        } else if (row && dto) {
           this.dataSource.data.forEach((item) => {
-            if (row.id === item.id) {
-              item.date = editted.date;
-              item.name = editted.name;
+            if (row?.id === item.id) {
+              item.date = dto.date;
+              item.name = dto.name;
             }
           });
         }

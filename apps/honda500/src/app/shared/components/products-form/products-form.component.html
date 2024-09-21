@@ -1,0 +1,26 @@
+<ng-container formArrayName="products">
+  @for (productForm of products.controls; track $index;) {
+  <form [formGroup]="productForm" class="products-form">
+    <app-product-field></app-product-field>
+    <mat-form-field>
+      <mat-label>Quantity</mat-label>
+      <input
+        formControlName="quantity"
+        type="number"
+        matInput
+        placeholder="Quantity"
+      />
+    </mat-form-field>
+    <div class="flex-center-center">
+      <button mat-icon-button (click)="removeProduct($index)">
+        <mat-icon class="danger-icon">delete</mat-icon>
+      </button>
+    </div>
+  </form>
+  }
+  <div class="flex-center-center">
+    <button (click)="addProduct()" color="primary" mat-icon-button>
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+</ng-container>

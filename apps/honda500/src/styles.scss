@@ -8,7 +8,7 @@ $md3-theme: mat.define-theme(
     color: (
       theme-type: light,
       primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      tertiary: mat.$red-palette,
     ),
     density: (
       scale: 0,
@@ -47,4 +47,19 @@ tr {
       $alpha: 0.2
     );
   }
+}
+
+.danger-icon {
+  color: mat.get-theme-color($md3-theme, tertiary) !important;
+}
+
+.filter-and-add {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

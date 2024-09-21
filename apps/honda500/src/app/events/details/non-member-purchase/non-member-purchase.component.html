@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>
+  @if (data.member) {
+    Edit {{data.member.name}} purchase
+  } @else {
+    Add Purchase
+  }
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="flex-form">
+    @if (!data.member) {
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          formControlName="someoneName"
+          type="text"
+          matInput
+          placeholder="Give me his name"
+        />
+      </mat-form-field>
+    }
+    <app-products-form controlKey="products"></app-products-form>
+    <app-shipping-type controlKey="shippingMethod" (shippingMethodChange)="shippingMethod.set($event)" ></app-shipping-type>
+    @switch (shippingMethod()) { @case ('someone') {
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        formControlName="someoneName"
+        type="text"
+        matInput
+        placeholder="Give me his name"
+      />
+    </mat-form-field>
+    } @case ('shipping') {
+      <app-address-form controlKey="shippingDetails"></app-address-form>
+    }
+  }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="null">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="form.value"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

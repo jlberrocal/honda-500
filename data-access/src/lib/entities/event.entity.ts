@@ -1,12 +1,5 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Member } from './member.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from './products.entity';
 import { Purchase } from './purchase.entity';
 
 @Entity('events')
@@ -20,10 +13,9 @@ export class EventEntity {
   @Column({ type: 'datetime' })
   date!: Date;
 
-  @ManyToMany(() => Member, (me) => me.events, { eager: true })
-  @JoinTable()
-  members?: Member[];
+  @OneToMany(() => Product, (p) => p.event, { nullable: false })
+  products?: Product[];
 
-  @OneToMany(() => Purchase, (p) => p.event, {eager: true})
+  @OneToMany(() => Purchase, (p) => p.event, { eager: true, nullable: false })
   purchases?: Purchase[];
 }

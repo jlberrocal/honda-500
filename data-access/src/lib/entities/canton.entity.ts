@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import { District } from './district.entity';
 import { Province } from './province.entity';
 
@@ -16,9 +10,13 @@ export class Canton {
   @Column()
   name!: string;
 
-  @OneToMany(() => District, d => d.canton, { eager: true, cascade: true })
+  @OneToMany(() => District, (d) => d.canton, {
+    eager: true,
+    cascade: true,
+    nullable: false,
+  })
   districts!: District[];
 
-  @ManyToOne(() => Province, (p) => p.cantons)
+  @ManyToOne(() => Province, (p) => p.cantons, { nullable: false })
   province!: Province;
 }

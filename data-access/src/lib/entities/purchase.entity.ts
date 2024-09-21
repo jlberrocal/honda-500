@@ -1,37 +1,36 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventEntity } from './event.entity';
 import { Member } from './member.entity';
-import { Product } from './products.entity';
+import { PurchaseDetail } from './purchase-detail.entity';
 
 @Entity('purchases')
 export class Purchase {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @ManyToOne(() => Product, (p) => p.purchases, { eager: true })
-  @JoinTable()
-  product!: Product;
+  @ManyToOne(() => Member, (m) => m.purchases, {
+    cascade: true,
+    eager: true,
+    nullable: true,
+  })
+  member?: Member;
 
-  @ManyToOne(() => Member, { eager: true })
-  @JoinTable()
-  member!: Member;
+  @Column({nullable: true})
+  nonMemberName?: string;
 
-  @ManyToOne(() => EventEntity, (e) => e.purchases)
-  @JoinTable()
+  @Column({nullable: true})
+  nonMemberPhone?: string;
+
+  @ManyToOne(() => EventEntity, (e) => e.purchases, {
+    cascade: true,
+    nullable: false,
+  })
   event!: EventEntity;
 
-  @Column({ nullable: false })
-  quantity!: number;
-
-  @Column({ default: 'pickup' })
-  shippingMethod!: string;
-
-  @Column({ nullable: true })
-  someoneName?: string;
+  @OneToMany(() => PurchaseDetail, (pd) => pd.purchase, {
+    cascade: true,
+    eager: true,
+    nullable: false,
+  })
+  details?: PurchaseDetail[];
 }

@@ -19,4 +19,8 @@ export class EventsService extends IService<EventDTO> {
   editEvent(eventId: number, event: EditEventDTO): Observable<UpdateResult> {
     return this.http.put<UpdateResult>(`/api/events/${eventId}`, event);
   }
+
+  addEvent(event: EditEventDTO): Observable<EventDTO> {
+    return this.http.post<EventDTO>('/api/events', event);
+  }
 }

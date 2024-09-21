@@ -9,6 +9,6 @@ export class District {
   @Column()
   name!: string;
 
-  @ManyToOne(() => Canton, (c) => c.districts)
+  @ManyToOne(() => Canton, (c) => c.districts, { nullable: false })
   canton!: Canton;
 }

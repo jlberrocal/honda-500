@@ -1,0 +1,43 @@
+<mat-grid-list [formGroupName]="controlKey" cols="2" rowHeight="75px">
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <mat-select formControlName="province">
+        @for (province of provinceOptions(); track province.id) {
+        <mat-option [value]="province.id">{{ province.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Canton</mat-label>
+      <mat-select formControlName="canton">
+        @for (canton of cantonOptions(); track canton.id) {
+        <mat-option [value]="canton.id">{{ canton.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>District</mat-label>
+      <mat-select formControlName="zipCode">
+        @for (district of districtOptions(); track district.id) {
+        <mat-option [value]="district.id">{{ district.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Signals</mat-label>
+      <input
+        formControlName="signals"
+        type="text"
+        matInput
+        placeholder="delivery signals"
+      />
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>

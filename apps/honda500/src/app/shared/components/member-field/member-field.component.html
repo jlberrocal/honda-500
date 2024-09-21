@@ -1,0 +1,20 @@
+<mat-form-field>
+  <mat-label>Member</mat-label>
+  <input
+    formControlName="member"
+    matInput
+    (input)="filter($event)"
+    placeholder="Member"
+    placeholder="search by name or phone"
+    [matAutocomplete]="memberAuto"
+  />
+  <mat-autocomplete
+    requireSelection
+    #memberAuto="matAutocomplete"
+    [displayWith]="displayFn"
+  >
+    @for(option of memberOptions$ | async; track option.id) {
+    <mat-option [value]="option">{{ option.name }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

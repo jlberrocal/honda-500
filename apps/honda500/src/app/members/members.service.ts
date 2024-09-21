@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Member } from '@honda500/dtos';
+import { Member, SearchResult } from '@honda500/dtos';
 import { Observable } from 'rxjs';
 import { IService } from '../shared/iservice';
 
@@ -11,7 +11,7 @@ export class MembersService extends IService<Member> {
     return this.http.get<[Member[], number]>('/api/members');
   }
 
-  search(needle: string): Observable<Member[]> {
-    return this.http.get<Member[]>(`/api/members/search?needle=${needle}`);
+  search(needle: string): Observable<SearchResult[]> {
+    return this.http.get<SearchResult[]>(`/api/members/search?needle=${needle}`);
   }
 }

@@ -9,6 +9,6 @@ export class Province {
   @Column()
   name!: string;
 
-  @OneToMany(() => Canton, (c) => c.province, { eager: true, cascade: true })
+  @OneToMany(() => Canton, (c) => c.province, { eager: true, cascade: true, nullable: false })
   cantons!: Canton[];
 }

@@ -11,7 +11,7 @@ export class EventsService {
   ) {}
 
   create(member: EventEntity) {
-    return this.events.insert(member);
+    return this.events.save(member);
   }
 
   read(): Promise<[EventEntity[], number]> {

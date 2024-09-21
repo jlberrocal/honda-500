@@ -1,6 +1,6 @@
-import { Purchase } from '@honda500/data-access';
 import { PurchasesService } from '@honda500/repositories';
 import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
+import { AddPurchase } from './purchase.model';
 
 @Controller('purchases')
 export class PurchasesController {
@@ -19,7 +19,14 @@ export class PurchasesController {
   }
 
   @Post()
-  create(@Body() purchase: Purchase) {
-    return this.purchases.create(purchase);
+  create(@Body() purchase: AddPurchase) {
+    return this.purchases.create(
+      purchase.member,
+      purchase.eventId,
+      purchase.products,
+      purchase.shippingMethod,
+      purchase.someoneName,
+      purchase.shippingDetails
+    );
   }
 }

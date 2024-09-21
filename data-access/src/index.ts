@@ -8,5 +8,6 @@ export * from './lib/entities/products.entity';
 export * from './lib/entities/province.entity';
 export * from './lib/entities/provinces';
 export * from './lib/entities/purchase.entity';
+export * from './lib/entities/purchase-detail.entity';
+export * from './lib/entities/shipping-address.entity';
 export * from './lib/entities/raw-member';
-

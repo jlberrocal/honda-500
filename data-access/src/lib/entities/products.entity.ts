@@ -1,10 +1,10 @@
 import {
   Column,
   Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn
 } from 'typeorm';
-import { Purchase } from './purchase.entity';
+import { EventEntity } from './event.entity';
 
 @Entity('products')
 export class Product {
@@ -23,6 +23,6 @@ export class Product {
   @Column({ type: 'float' })
   totalPrice!: number;
 
-  @OneToMany(() => Purchase, (p) => p.product)
-  purchases?: Purchase[];
+  @ManyToOne(() => EventEntity, (e) => e.products)
+  event?: EventEntity;
 }
