@@ -17,9 +17,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@honda500/data-access": ["data-access/src/index.ts"],
-      "@honda500/dtos": ["dtos/src/index.ts"],
-      "@honda500/repositories": ["repositories/src/index.ts"]
+      "@honda500/data-access": ["libs/data-access/src/index.ts"],
+      "@honda500/dtos": ["libs/dtos/src/index.ts"],
+      "@honda500/repositories": ["libs/repositories/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

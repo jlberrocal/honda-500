@@ -1,7 +1,0 @@
-{
-  "name": "@honda500/dtos",
-  "version": "0.0.1",
-  "dependencies": {},
-  "type": "commonjs",
-  "main": "./index.cjs"
-}

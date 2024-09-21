@@ -1,6 +1,6 @@
 import { Member } from '@honda500/data-access';
+import { MembersService } from '@honda500/repositories';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { MembersService } from 'repositories/src/lib/members.service';
 
 @Controller('members')
 export class MembersController {
